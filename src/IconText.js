@@ -15,10 +15,6 @@ const wordMap = icons.reduce(function(chain, i) {
   return chain;
 }, {});
 
-// Instead of a colors array, RGB colors would allows us to use any color. For
-// example, the following color is red: rgb(255, 0, 0). We could then store the
-// colors themselves in the state rather than the color indicies.
-
 const colors = [
   'green',
   'pink',
