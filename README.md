@@ -8,7 +8,7 @@ Try creating this application by starting from the template application, and ref
 
 Currently, most of us randomly select a color from a fixed array of colors. We'd like to use any color, not just the colors in our array.
 
-*Hint: Use RGB colors and store an array of rgb strings in state rather than the array of color indices. For example, `rgb(255, 0, 0)` is `#f00` or `#ff0000` or `red`.*
+*Hint: Use RGB colors and store an array of rgb strings in state rather than the array of color indices. For example, `rgb(255, 0, 0)` is `#f00` or `#ff0000` or `red`. Three random integers between 0 and 255 can be used to create a random color.*
 
 ### Challenge 2
 
