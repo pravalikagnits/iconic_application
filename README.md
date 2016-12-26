@@ -88,7 +88,9 @@ In the constructor, that's what the following is all about:
 this.toggleWord = this.toggleWord.bind(this);
 ```
 
-When `toggleWord` is invoked, we always want the `toggleWord` method to be bound to `this` particular component. However, the `.map` callback function is anonymous (unnamed), so we can't do things in this way. Fortunately, the Array's [.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method takes a second argument, which is the object that `this` should refer to within the callback function:
+When `toggleWord` is invoked, we always want the `toggleWord` method to be bound to `this` particular component. That lets us use `this` within the `toggleWord` method, to do things like `this.setState`.
+
+However, the `.map` callback function is anonymous (unnamed), so we can't do things in this way. Fortunately, the Array's [.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method takes a second argument, which is the object that `this` should refer to within the callback function:
 
 ```javascript
 render() {
