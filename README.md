@@ -24,7 +24,7 @@ When you click on an icon, replace the icon with the word that it represents.
 
 But first, we need to talk about `this`. In the `render` of [IconText](./src/IconText.js), we have something like:
 
-```
+```javascript
 render() {
   let words = this.props.text.split(' ')
 
@@ -38,7 +38,7 @@ render() {
 
 This is simplified for illustration purposes. Don't worry that this doesn't quite match up with our code. Suppose we want to add an `onClick` event to the `<span>`. You would think we could do:
 
-```
+```javascript
 constructor() {
   super();
   this.toggleWord = this.toggleWord.bind(this);
@@ -65,7 +65,7 @@ But what happens? In the console, you'll see an error like:
 
 Bummer! Time to add some debugging:
 
-```
+```javascript
 render() {
   let words = this.props.text.split(' ');
 
@@ -84,13 +84,13 @@ You'll notice that `this` is defined within the `render` method, but `this` is n
 
 In the constructor, that's what the following is all about:
 
-```
+```javascript
 this.toggleWord = this.toggleWord.bind(this);
 ```
 
 When `toggleWord` is invoked, we always want the `toggleWord` method to be bound to `this` particular component. However, the `.map` callback function is anonymous (unnamed), so we can't do things in this way. Fortunately, the Array's [.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method takes a second argument, which is the object that `this` should refer to within the callback function:
 
-```
+```javascript
 render() {
   let words = this.props.text.split(' ');
 
@@ -110,7 +110,7 @@ As is often the case with programming, we fixed one problem to uncover a differe
 
  When `toggleWord` is being invoked, it's invoked with an [event object](https://facebook.github.io/react/docs/events.html) as the first argument.
 
-```
+```javascript
 toggleWord(event) {
   console.log('Word was clicked!', event);
 }
@@ -118,7 +118,7 @@ toggleWord(event) {
 
 Instead of the event object, we really just want to pass `toggleWord` the word (e.g., "tree").
 
-```
+```javascript
 toggleWord(word) {
   console.log('Word was clicked!', word);
 }
