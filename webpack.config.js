@@ -3,7 +3,7 @@ const webpack = require('webpack');
 require('path');
 
 module.exports = {
-  context: __dirname + '/src',
+  context: __dirname + '\\src',
   entry: {
     javascript: './index.js',
     html: __dirname + '/public/index.html',

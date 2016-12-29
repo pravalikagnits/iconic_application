@@ -11,10 +11,7 @@ class App extends Component {
     // In a constructor, call `super` first if the class extends another class
     super();
 
-    // Initialize state in the constructor; this is the only place you
-    // can set the state directly without using `this.setState`
     this.state = { text: '' };
-
     // This binding is necessary to make `this` work in the callback
     this.updateText = this.updateText.bind(this);
   }

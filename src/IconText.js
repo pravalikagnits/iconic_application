@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './IconText.css';
-
+import App from './App'
 import icons from './icons'
 
 // For performance, we want a map of words to icon names, rather than just an
@@ -15,14 +15,14 @@ const wordMap = icons.reduce(function(chain, i) {
   return chain;
 }, {});
 
-const colors = [
-  'green',
-  'pink',
-  'purple',
-  'blue',
-  'red',
-  'orange'
-];
+// const colors = [
+//   'green',
+//   'pink',
+//   'purple',
+//   'blue',
+//   'red',
+//   'orange'
+// ];
 
 // Unlike the App component, this component has both props and state
 
@@ -35,7 +35,9 @@ class IconText extends Component {
     // can set the state directly without using `this.setState`
     this.state = {
       colorIndices: [],
+
     };
+
   }
 
   // We need to store the random colors used for words in state so the colors
@@ -57,8 +59,12 @@ class IconText extends Component {
 
     // Assign random colors to new words
     while (nextColorIndices.length < nextWordCount) {
-      const colorIndex = Math.floor(Math.random() * colors.length);
-      nextColorIndices.push(colorIndex)
+      //const colorIndex = Math.floor(Math.random() * colors.length);
+          var r=Math.floor(Math.random() * 255).toString(16);
+          var g=Math.floor(Math.random() * 255).toString(16);
+          var b=Math.floor(Math.random() * 255).toString(16);
+          nextColorIndices.push(r+g+b)
+
     }
 
     // Now update state with our new array of color indices
@@ -71,27 +77,27 @@ class IconText extends Component {
     let words = this.props.text.split(' ')
 
     words = words.map(function(w, i) {
-      w = w.replace(/\W/g, '')
-        .replace(/s?$/, '')
-        .toLowerCase();
+      w = w.replace(/\W/g, '').toLowerCase();
 
       const colorIndex = colorIndices[i];
 
       const style = {
-        color: colors[colorIndex],
+        color:"#"+colorIndex,
       };
 
-      // Whenever dealing with an array of components, we need to specify `key`.
-      // This allows React to smartly update the DOM; for example, if we delete
-      // an element in the array, it knows the exact corresponding element in
-      // the DOM based on the key.
-
-      if (wordMap[w]) {
+      if (wordMap[w] ) {
         // Found an icon! Return the icon instead of the word
         return (<i style={style} key={i} className={'fa ' + wordMap[w]} />);
-      } else {
+      }
+      else {
         // Didn't find an icon for this word. Just return the word.
+        const w1=w.replace(/s?$/,'')
+        if(wordMap[w1]){
+          return (<i style={style} key={i} className={'fa ' + wordMap[w1]} />);
+        }
+        else{
         return (<span key={i}>{w}</span>);
+      }
       }
     });
 

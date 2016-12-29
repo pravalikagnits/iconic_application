@@ -1,3 +1,7 @@
 p > * {
   margin-right: 10px;
 }
+.fa:hover{
+    transition: 2.0s;
+    transform: rotatey(270deg);
+}
