@@ -35,9 +35,15 @@ class IconText extends Component {
     // can set the state directly without using `this.setState`
     this.state = {
       colorIndices: [],
-
+      text:[],
     };
+    this.func1 = this.func1.bind(this);
 
+  }
+  func1(value,i){
+    const  nextText=[...this.state.text];
+    nextText[i]=value;
+    this.setState({text:nextText})
   }
 
   // We need to store the random colors used for words in state so the colors
@@ -85,21 +91,21 @@ class IconText extends Component {
         color:"#"+colorIndex,
       };
 
-      if (wordMap[w] ) {
+      if (wordMap[w] && this.state.text[i]==undefined) {
         // Found an icon! Return the icon instead of the word
-        return (<i style={style} key={i} className={'fa ' + wordMap[w]} />);
+        return (<i  onClick={()=>this.func1(w,i)} style={style} key={i} className={'fa ' + wordMap[w]} />);
       }
       else {
         // Didn't find an icon for this word. Just return the word.
         const w1=w.replace(/s?$/,'')
-        if(wordMap[w1]){
-          return (<i style={style} key={i} className={'fa ' + wordMap[w1]} />);
+        if(wordMap[w1] && this.state.text[i]==undefined){
+          return (<i onClick={()=>his.func1(w1,i)} style={style} key={i} className={'fa ' + wordMap[w1]} />);
         }
         else{
         return (<span key={i}>{w}</span>);
       }
       }
-    });
+    },this);
 
     return (
       <p>
